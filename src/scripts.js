@@ -10,7 +10,7 @@ let logOutButton = document.querySelector('#logOutButton');
 let pastTrips = document.querySelector('#pastTrips');
 let futureTrips = document.querySelector('#futureTrips');
 let pendingTrips = document.querySelector('#pendingTrips');
-
+let destinationsDropDown = document.querySelector('#destinationsDropDown');
 
 let travelersData;
 let tripsData;
@@ -42,9 +42,18 @@ function displayTravelersPage(travelerId) {
 
 function updateYearlySpent() {
   displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler, '2020')} in travel for 2020!`
+  welcomeTraveler.innerText = `Welcome, ${traveler.findTraveler(currentTraveler).name}`;
+  pastTrips.innerText = traveler.filterTripsByTime(currentTraveler, 'pastTrips', 'approved');
+  futureTrips.innerText = traveler.filterTripsByTime(currentTraveler, 'futureTrips', 'approved');
+  pendingTrips.innerText = traveler.filterTravelersTripsByStatus(currentTraveler, 'pending');
   
 }
 
+function createDestinationsDropDown() {
+  traveler.destinationsData.forEach(destination => {
+    destinationsDropDown.innerHTML += `<option value="${destination.id}">${destination.destination}</option>`
+  })
+}
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
