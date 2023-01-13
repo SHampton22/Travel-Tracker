@@ -16,19 +16,19 @@ class Traveler {
   };
 
   filterTravelersTripsByStatus(travelerId, status) {
-   return this.findTripsByTraveler(travelerId).filter(trip => trip.status === status);
+   return this.filterTripsByTraveler(travelerId).filter(trip => trip.status === status);
   };
 
   filterTripsByTime(travelerId, tripTime, status) {
     if (tripTime === 'pastTrips') {
-      return this.findTravelersTripsByStatus(travelerId, status).filter(trip => dayjs(trip.date).isBefore("2020/05/01"));
+      return this.filterTravelersTripsByStatus(travelerId, status).filter(trip => dayjs(trip.date).isBefore("2020/05/01"));
     } else if (tripTime === 'futureTrips') {
-      return this.findTravelersTripsByStatus(travelerId, status).filter(trip => dayjs(trip.date).isAfter("2020/05/01"));
+      return this.filterTravelersTripsByStatus(travelerId, status).filter(trip => dayjs(trip.date).isAfter("2020/05/01"));
     }  
   };
 
   filterTraverlsTripsByYear(travelerId, year) {
-    return this.findTripsByTraveler(travelerId).filter(trip => trip.date.includes(year));
+    return this.filterTripsByTraveler(travelerId).filter(trip => trip.date.includes(year));
   };
 
   calculateYearlyExpense(travelerId, year) {

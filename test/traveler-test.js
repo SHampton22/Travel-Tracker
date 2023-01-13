@@ -2,7 +2,7 @@ import chai from 'chai';
 import Traveler from '../src/traveler';
 const expect = chai.expect;
 
-describe("Trip", () => {
+describe("Traveler", () => {
   let traveler;
   let travelersData;
   let tripsData;
@@ -46,14 +46,14 @@ describe("Trip", () => {
       "travelers": 2,
       "date": "2020/08/24",
       "duration": 11,
-      "status": "approved",
+      "status": "pending",
       "suggestedActivities": []
     },{
       "id": 48,
       "userID": 44,
       "destinationID": 14,
       "travelers": 6,
-      "date": "2021/02/10",
+      "date": "2020/02/10",
       "duration": 8,
       "status": "approved",
       "suggestedActivities": []
@@ -137,38 +137,173 @@ describe("Trip", () => {
 	});
 
   it('should find a traveler by ID', () => {
-    console.log()
-    expect(traveler.findTraveler(7)).to.deep.equal(
-      { id: 44, name: 'Marijo MacNeilley', travelerType: 'photographer' }
-      );
+    expect(traveler.findTraveler(47)).to.deep.equal({
+      "id": 47,
+      "name": "Den Dossettor",
+      "travelerType": "relaxer",
+    });
   });
 
   it('should find all travelers trips', () => {
-    console.log(traveler.filterTripsByTraveler(7))
-    expect(traveler.filterTripsByTraveler(44)).to.deep.equal();
+    expect(traveler.filterTripsByTraveler(44)).to.deep.equal([{
+      "id": 46,
+      "userID": 44,
+      "destinationID": 33,
+      "travelers": 2,
+      "date": "2020/08/24",
+      "duration": 11,
+      "status": "pending",
+      "suggestedActivities": []
+    },{
+      "id": 48,
+      "userID": 44,
+      "destinationID": 14,
+      "travelers": 6,
+      "date": "2020/02/10",
+      "duration": 8,
+      "status": "approved",
+      "suggestedActivities": []
+    },{
+      "id": 68,
+      "userID": 44,
+      "destinationID": 41,
+      "travelers": 6,
+      "date": "2020/09/19",
+      "duration": 14,
+      "status": "approved",
+      "suggestedActivities": []
+    },{
+      "id": 161,
+      "userID": 44,
+      "destinationID": 48,
+      "travelers": 6,
+      "date": "2020/08/13",
+      "duration": 15,
+      "status": "approved",
+      "suggestedActivities": []
+    }]);
   });
 
   it('should find a travelers pending trips', () => {
-    expect(traveler.filterTravelersTripsByStatus(44, 'pending')).to.deep.equal();
+    expect(traveler.filterTravelersTripsByStatus(44, 'pending')).to.deep.equal([{
+      "id": 46,
+      "userID": 44,
+      "destinationID": 33,
+      "travelers": 2,
+      "date": "2020/08/24",
+      "duration": 11,
+      "status": "pending",
+      "suggestedActivities": []
+    }]);
   });
 
   it('should find a travelers approved trips', () => {
-    expect(traveler.filterTravelersTripsByStatus(44, 'approved')).to.deep.equal();
+    expect(traveler.filterTravelersTripsByStatus(44, 'approved')).to.deep.equal([{
+      "id": 48,
+      "userID": 44,
+      "destinationID": 14,
+      "travelers": 6,
+      "date": "2020/02/10",
+      "duration": 8,
+      "status": "approved",
+      "suggestedActivities": []
+    },{
+      "id": 68,
+      "userID": 44,
+      "destinationID": 41,
+      "travelers": 6,
+      "date": "2020/09/19",
+      "duration": 14,
+      "status": "approved",
+      "suggestedActivities": []
+    },{
+      "id": 161,
+      "userID": 44,
+      "destinationID": 48,
+      "travelers": 6,
+      "date": "2020/08/13",
+      "duration": 15,
+      "status": "approved",
+      "suggestedActivities": []
+    }]);
   });
 
   it('should find all past trips for a secific traveler', () => {
-    expect(traveler.filterTripByTime(44, 'pastTrips', 'approved')).to.deep.equal();
+    expect(traveler.filterTripsByTime(44, 'pastTrips', 'approved')).to.deep.equal([{
+      "id": 48,
+      "userID": 44,
+      "destinationID": 14,
+      "travelers": 6,
+      "date": "2020/02/10",
+      "duration": 8,
+      "status": "approved",
+      "suggestedActivities": []
+    }]);
   });
 
   it('should find all future trips for a secific traveler', () => {
-    expect(traveler.filterTripByTime(44, 'pastTrips', 'approved')).to.deep.equal();
+    expect(traveler.filterTripsByTime(44, 'futureTrips', 'approved')).to.deep.equal([{
+      "id": 68,
+      "userID": 44,
+      "destinationID": 41,
+      "travelers": 6,
+      "date": "2020/09/19",
+      "duration": 14,
+      "status": "approved",
+      "suggestedActivities": []
+    },{
+      "id": 161,
+      "userID": 44,
+      "destinationID": 48,
+      "travelers": 6,
+      "date": "2020/08/13",
+      "duration": 15,
+      "status": "approved",
+      "suggestedActivities": []
+    }]);
   });
 
   it('should find a travelers trips by year', () => {
-    expect(traveler.filterTraverlsTripsByYear(44, '2022')).to.deep.equal();
+    expect(traveler.filterTraverlsTripsByYear(44, '2020')).to.deep.equal([{
+      "id": 46,
+      "userID": 44,
+      "destinationID": 33,
+      "travelers": 2,
+      "date": "2020/08/24",
+      "duration": 11,
+      "status": "pending",
+      "suggestedActivities": []
+    },{
+      "id": 48,
+      "userID": 44,
+      "destinationID": 14,
+      "travelers": 6,
+      "date": "2020/02/10",
+      "duration": 8,
+      "status": "approved",
+      "suggestedActivities": []
+    },{
+      "id": 68,
+      "userID": 44,
+      "destinationID": 41,
+      "travelers": 6,
+      "date": "2020/09/19",
+      "duration": 14,
+      "status": "approved",
+      "suggestedActivities": []
+    },{
+      "id": 161,
+      "userID": 44,
+      "destinationID": 48,
+      "travelers": 6,
+      "date": "2020/08/13",
+      "duration": 15,
+      "status": "approved",
+      "suggestedActivities": []
+    }]);
   });
   
   it('should calculate a travelers total spent on trips for a year', () => {
-    expect(traveler.calculateYearlyExpense(44, '2022')).to.equal()
+    expect(traveler.calculateYearlyExpense(44, '2020')).to.equal(47256)
   }); 
 });
