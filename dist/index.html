@@ -4,11 +4,54 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>Travel Tracker</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
+  <nav>
+    <h1>TRAVEL TRACKER</h1>
+    <h2>Welcome, Traveler</h2>
+    <p>Today is Friday May 01, 2020!</p>
+    <p>You have spent this much for this year!</p>
+    <button class="logout-button">Log Out</button>
+  </nav>
+  <main>
+    <section class="display-trips">
+      <div>Past trips container
+
+      </div>
+      <div>Future trips container
   
+      </div>
+      <div>Pending trips container
+  
+      </div>
+    </section>
+    <section class="form-section">
+      <p class="post-result-message hidden"></p>
+      <form class="form">
+        <h2>Make A New Trip Request</h2>
+        <p class="hidden empty-input-message">Please fill out all fields</p>
+        <div>
+          <label for="tripDate">Start Date</label>
+          <input type="date" name="date" id="tripDate" value="2020-05-01" min="2020-05-02" max="2023-05-01">
+        </div>
+        <div>
+          <label for="duration">Length of stay</label>
+          <input type="number" name="duration" id="duration" required />
+        </div>
+        <div>
+          <label for="numberTraveling">Number of Travelers</label>
+          <input type="number" name="numberTraveling" id="numberTraveling" required />
+        </div>
+        <div>
+          <label for="destination">Select Destination</label>
+          <select type="number" name="destination" id="destination" required >
+            <option class="destinations" name="destinations">Destinations</option>
+        </div>
+        <button class="trip-request-button">Submit</button>
+      </form>
+    </section>
+  </main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 </body>
