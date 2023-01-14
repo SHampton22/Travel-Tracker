@@ -2,12 +2,21 @@ body {
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 }
 
-main {
-  border: solid red;
-}
-
 nav {
   border: solid green;
+  display: flex;
+}
+
+/* .traveler-info{
+
+}
+
+.form-section {
+  
+} */
+
+main {
+  border: solid red;
 }
 
 .card-holder {
@@ -41,3 +50,4 @@ nav {
   justify-content: space-between;
   padding: 20px;
 }
+

@@ -9,18 +9,21 @@
 <body>
   <nav>
     <h1>TRAVEL TRACKER</h1>
-    <h2 id="welcomeTraveler">Welcome, Traveler</h2>
-    <p>Today is Friday May 01, 2020!</p>
-    <p id="displayTotalSpent">You have spent this much for this year!</p>
+    <div>
+      <h2 id="welcomeTraveler">Welcome, Traveler</h2>
+      <p>Today is Friday May 01, 2020!</p>
+      <p id="displayTotalSpent">You have spent this much for this year!</p>
+    </div>
+    
     <button id="logOutButton">Log Out</button>
   </nav>
   <main>
     <section class="display-trips">
+      <div class="pending-trips-holder card-holder" id="pendingTrips">Pending trips container
+      </div>
       <div class="past-trips-holder card-holder" id="pastTrips">Past trips container
       </div>
       <div class="future-trips-holder card-holder" id="futureTrips">Future trips container
-      </div>
-      <div class="pending-trips-holder card-holder" id="pendingTrips">Pending trips container
       </div>
     </section>
     <section class="form-section">

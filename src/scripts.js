@@ -7,9 +7,9 @@ import Traveler from './Traveler';
 let welcomeTraveler = document.querySelector('#welcomeTraveler');
 let displayTotalSpent = document.querySelector('#displayTotalSpent');
 let logOutButton = document.querySelector('#logOutButton');
-let pastTrips = document.querySelector('#pastTrips');
-let futureTrips = document.querySelector('#futureTrips');
 let pendingTrips = document.querySelector('#pendingTrips');
+let futureTrips = document.querySelector('#futureTrips');
+let pastTrips = document.querySelector('#pastTrips');
 let destinationsDropDown = document.querySelector('#destinationsDropDown');
 
 let travelersData;
