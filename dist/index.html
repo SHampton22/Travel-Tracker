@@ -36,17 +36,18 @@
           <input type="date" name="date" id="tripDate" value="2020-05-01" min="2020-05-02" max="2023-05-01">
         </div>
         <div>
-          <label for="duration">Length of stay</label>
-          <input type="number" name="duration" id="duration" required />
+          <label for="duration">Number of Days (1-20)</label>
+          <input type="number" id="duration" name="duration" placeholder="number 1-20" min="1" max="20" oninput="validity.valid||(value='');" required />
         </div>
         <div>
-          <label for="numberTraveling">Number of Travelers</label>
-          <input type="number" name="numberTraveling" id="numberTraveling" required />
+          <label for="numberTraveling">Number of Travelers (1-6)</label>
+          <input type="number" id="numberTraveling" name="numberTraveling" placeholder="number 1-6" min="1" max="6" oninput="validity.valid||(value='');" required />
         </div>
         <div>
-          <label for="destinationsDropDown">Select Destination</label>
+          <label for="destinationsDropDown"></label>
           <select type="number" name="destination" id="destinationsDropDown" required >
-            <option class="destinations" name="destinations" value="0">Destinations</option>
+            <!-- <option class="destinations" name="destinations" value="0">Destinations</option> -->
+            <option value="" disabled selected hidden>Select A Destination</option>
         </div>
         <button class="trip-request-button">Submit</button>
       </form>
