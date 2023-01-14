@@ -1,28 +1,30 @@
 body {
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  margin: 0;
 }
 
 nav {
   border: solid green;
   display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
-/* .traveler-info{
+.traveler-info{
 
 }
 
 .form-section {
   
-} */
+}
 
-/* input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-} */
+.trip-request-button {
+
+}
 
 main {
   border: solid red;
+  /* margin: 30px; */
 }
 
 .card-holder {
