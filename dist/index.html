@@ -14,23 +14,11 @@
       <p>Today is Friday May 01, 2020!</p>
       <p id="displayTotalSpent">You have spent this much for this year!</p>
     </div>
-    
-    <button id="logOutButton">Log Out</button>
-  </nav>
-  <main>
-    <section class="display-trips">
-      <div class="pending-trips-holder card-holder" id="pendingTrips">Pending trips container
-      </div>
-      <div class="past-trips-holder card-holder" id="pastTrips">Past trips container
-      </div>
-      <div class="future-trips-holder card-holder" id="futureTrips">Future trips container
-      </div>
-    </section>
     <section class="form-section">
       <p class="post-result-message hidden"></p>
       <form class="form">
         <h2>Make A New Trip Request</h2>
-        <p class="hidden empty-input-message">Please fill out all fields</p>
+        <p>Please fill out all fields</p>
         <div>
           <label for="tripDate">Start Date</label>
           <input type="date" name="date" id="tripDate" value="2020-05-01" min="2020-05-02" max="2023-05-01">
@@ -46,11 +34,22 @@
         <div>
           <label for="destinationsDropDown"></label>
           <select type="number" name="destination" id="destinationsDropDown" required >
-            <!-- <option class="destinations" name="destinations" value="0">Destinations</option> -->
             <option value="" disabled selected hidden>Select A Destination</option>
+          </select>
         </div>
         <button class="trip-request-button">Submit</button>
       </form>
+    </section>
+    <button id="logOutButton">Log Out</button>
+  </nav>
+  <main>
+    <section class="display-trips">
+      <div class="pending-trips-holder card-holder" id="pendingTrips">Pending trips container
+      </div>
+      <div class="past-trips-holder card-holder" id="pastTrips">Past trips container
+      </div>
+      <div class="future-trips-holder card-holder" id="futureTrips">Future trips container
+      </div>
     </section>
   </main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
