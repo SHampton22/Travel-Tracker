@@ -16,7 +16,7 @@ let travelersData;
 let tripsData;
 let destinationsData;
 let traveler 
-let currentTraveler = 44;
+let currentTraveler = 38;
 
 const getFetch = () => {
   fetchData()
@@ -26,7 +26,7 @@ const getFetch = () => {
       tripsData = data[1].trips
       destinationsData = data[2].destinations
       traveler = new Traveler(travelersData, tripsData, destinationsData);
-      updateYearlySpent();
+      displayTravelerPage()
   });
   
 }
@@ -34,8 +34,12 @@ const getFetch = () => {
 window.addEventListener('load', getFetch);
 
 
-function displayTravelersPage(travelerId) {
-  traveler.findTraveler(travelerId);
+function displayTravelerPage() {
+  updateYearlySpent();
+  displayPendingTrips();
+  displayFutureTrips();
+  displayPastTrips();
+  createDestinationsDropDown();
   
 
 };
@@ -43,17 +47,96 @@ function displayTravelersPage(travelerId) {
 function updateYearlySpent() {
   displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler, '2020')} in travel for 2020!`
   welcomeTraveler.innerText = `Welcome, ${traveler.findTraveler(currentTraveler).name}`;
-  pastTrips.innerText = traveler.filterTripsByTime(currentTraveler, 'pastTrips', 'approved');
-  futureTrips.innerText = traveler.filterTripsByTime(currentTraveler, 'futureTrips', 'approved');
-  pendingTrips.innerText = traveler.filterTravelersTripsByStatus(currentTraveler, 'pending');
-  
-}
+};
 
 function createDestinationsDropDown() {
   traveler.destinationsData.forEach(destination => {
     destinationsDropDown.innerHTML += `<option value="${destination.id}">${destination.destination}</option>`
-  })
-}
+  });
+};
+
+function displayPendingTrips() {
+  return traveler.filterTravelersTripsByStatus(currentTraveler, 'pending').forEach(trip => {
+    const matchingDestination = traveler.destinationsData.find(destination => destination.id === trip.destinationID)
+    const lodgingTotal = trip.duration * matchingDestination.estimatedLodgingCostPerDay;
+    const flightTotal = trip.travelers * matchingDestination.estimatedFlightCostPerPerson;
+    const tripCost = lodgingTotal + flightTotal;
+    const agentFee = tripCost * .10;
+    const tripTotal = tripCost + agentFee;
+    pendingTrips.innerHTML +=
+      `<article class="card">
+          <header class="card-header">
+            <h3>Destination: ${matchingDestination.destination}</h3>
+            <p>Start Date: ${trip.date}</p>
+            </header>
+          <div class="card-body">
+            <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}"/>
+            <p>Length of Stay: ${trip.duration} days</p>
+            <p>Number of Travelers: ${trip.travelers}</p>
+          </div>
+          <footer class="card-footer">
+            <p>Status: ${trip.status}</p>
+            <p>Total Investment: $${tripTotal}</p>
+          </footer>
+        </article>`;
+  });
+};
+  
+function displayPastTrips() {
+  return traveler.filterTripsByTime(currentTraveler, 'pastTrips', 'approved').forEach(trip => {
+      const matchingDestination = traveler.destinationsData.find(destination => destination.id === trip.destinationID)
+      const lodgingTotal = trip.duration * matchingDestination.estimatedLodgingCostPerDay;
+      const flightTotal = trip.travelers * matchingDestination.estimatedFlightCostPerPerson;
+      const tripCost = lodgingTotal + flightTotal;
+      const agentFee = tripCost * .10;
+      const tripTotal = tripCost + agentFee;
+      pastTrips.innerHTML +=
+        `<article class="card">
+            <header class="card-header">
+              <h3>Destination: ${matchingDestination.destination}</h3>
+              <p>Start Date: ${trip.date}</p>
+              </header>
+            <div class="card-body">
+              <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}"/>
+              <p>Length of Stay: ${trip.duration} days</p>
+              <p>Number of Travelers: ${trip.travelers}</p>
+            </div>
+            <footer class="card-footer">
+              <p>Status: ${trip.status}</p>
+              <p>Total Investment: $${tripTotal}</p>
+            </footer>
+          </article>`;
+    });
+  };
+
+function displayFutureTrips() {
+  return traveler.filterTripsByTime(currentTraveler, 'futureTrips', 'approved').forEach(trip => {
+    const matchingDestination = traveler.destinationsData.find(destination => destination.id === trip.destinationID)
+    const lodgingTotal = trip.duration * matchingDestination.estimatedLodgingCostPerDay;
+    const flightTotal = trip.travelers * matchingDestination.estimatedFlightCostPerPerson;
+    const tripCost = lodgingTotal + flightTotal;
+    const agentFee = tripCost * .10;
+    const tripTotal = tripCost + agentFee;
+    futureTrips.innerHTML +=
+      `<article class="card">
+          <header class="card-header">
+            <h3>Destination: ${matchingDestination.destination}</h3>
+            <p>Start Date: ${trip.date}</p>
+            </header>
+          <div class="card-body">
+            <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}"/>
+            <p>Length of Stay: ${trip.duration} days</p>
+            <p>Number of Travelers: ${trip.travelers}</p>
+          </div>
+          <footer class="card-footer">
+            <p>Status: ${trip.status}</p>
+            <p>Total Investment: $${tripTotal}</p>
+          </footer>
+        </article>`;
+  });
+};
+
+
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
