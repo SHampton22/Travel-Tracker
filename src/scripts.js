@@ -6,14 +6,17 @@ import Traveler from './Traveler';
 
 let welcomeTraveler = document.querySelector('#welcomeTraveler');
 let displayTotalSpent = document.querySelector('#displayTotalSpent');
-let logOutButton = document.querySelector('#logOutButton');
+let logoutButton = document.querySelector('#logoutButton');
 let pendingTrips = document.querySelector('#pendingTrips');
 let futureTrips = document.querySelector('#futureTrips');
 let pastTrips = document.querySelector('#pastTrips');
 let destinationsDropDown = document.querySelector('#destinationsDropDown');
 let form = document.querySelector('.form');
 let postResponseMessage = document.querySelector(".post-Response-Message");
-// let submitFormButton = document.querySelector('#submitFormButton');
+let loginPage = document.querySelector('.login-page');
+let nav = document.querySelector('.nav');
+let main = document.querySelector('.main');
+let loginButton = document.querySelector('.loginButton');
 
 let travelersData;
 let tripsData;
@@ -34,6 +37,18 @@ const getFetch = () => {
 };
 
 window.addEventListener('load', getFetch);
+
+loginButton.addEventListener('click', (event) => {
+  nav.classList.remove('hidden');
+  main.classList.remove('hidden');
+  loginPage.classList.add('hidden');
+})
+
+logoutButton.addEventListener('click', (event => {
+  nav.classList.add('hidden');
+  main.classList.add('hidden');
+  loginPage.classList.remove('hidden');
+}))
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
