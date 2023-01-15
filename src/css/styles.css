@@ -61,7 +61,6 @@ main {
 
 .login-page {
   height: 100vh;
-  border: solid;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

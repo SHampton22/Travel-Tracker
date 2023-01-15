@@ -17,12 +17,16 @@ let loginPage = document.querySelector('.login-page');
 let nav = document.querySelector('.nav');
 let main = document.querySelector('.main');
 let loginButton = document.querySelector('.loginButton');
+let username = document.querySelector('#username');
+let password = document.querySelector('#password');
+let loginResponseMessage = document.querySelector('.login-response-message');
+let loginForm = document.querySelector('.login-form');
 
 let travelersData;
 let tripsData;
 let destinationsData;
 let traveler 
-let currentTraveler = 38;
+let currentTraveler;
 
 const getFetch = () => {
   fetchData()
@@ -32,16 +36,18 @@ const getFetch = () => {
       tripsData = data[1].trips
       destinationsData = data[2].destinations
       traveler = new Traveler(travelersData, tripsData, destinationsData);
-      displayTravelerPage()
+      assignUsernames();
+      
   });
 };
 
-window.addEventListener('load', getFetch);
+window.addEventListener('load', 
+getFetch);
 
 loginButton.addEventListener('click', (event) => {
-  nav.classList.remove('hidden');
-  main.classList.remove('hidden');
-  loginPage.classList.add('hidden');
+  event.preventDefault();
+  validateUser();
+  
 })
 
 logoutButton.addEventListener('click', (event => {
@@ -55,7 +61,7 @@ form.addEventListener('submit', (event) => {
   const formData = new FormData(event.target);
   const newTrip = {
     id: tripsData.length + 1,
-    userID: currentTraveler,
+    userID: currentTraveler.id,
     destinationID: Number(formData.get('destination')),
     travelers: Number(formData.get('numberTraveling')),
     date: formData.get('date').replaceAll("-", "/"),
@@ -78,10 +84,29 @@ function displayTravelerPage() {
 
 };
 
+function assignUsernames() {
+  return travelersData.forEach(traveler => {
+    traveler.username = `traveler${traveler.id}`
+  });
+};
+
+function validateUser(event) {
+  
+  currentTraveler = travelersData.find(traveler => traveler.username === username.value)
+  if (password.value === 'travel' && username.value === currentTraveler.username) {
+    displayTravelerPage();
+    nav.classList.remove('hidden');
+    main.classList.remove('hidden');
+    loginPage.classList.add('hidden');
+  } else {
+    loginResponseMessage.classList.remove('hidden');
+  }
+  loginForm.reset();
+};
 
 function updateYearlySpent() {
-  displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler, '2020')} in travel for 2020!`
-  welcomeTraveler.innerText = `Welcome, ${traveler.findTraveler(currentTraveler).name}`;
+  displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, '2020')} in travel for 2020!`
+  welcomeTraveler.innerText = `Welcome, ${traveler.findTraveler(currentTraveler.id).name}`;
 };
 
 function createDestinationsDropDown() {
@@ -91,7 +116,8 @@ function createDestinationsDropDown() {
 };
 
 function displayPendingTrips() {
-  return traveler.filterTravelersTripsByStatus(currentTraveler, 'pending').forEach(trip => {
+  pendingTrips.innerHTML = '';
+  return traveler.filterTravelersTripsByStatus(currentTraveler.id, 'pending').forEach(trip => {
     const matchingDestination = traveler.destinationsData.find(destination => destination.id === trip.destinationID)
     const lodgingTotal = trip.duration * matchingDestination.estimatedLodgingCostPerDay;
     const flightTotal = trip.travelers * matchingDestination.estimatedFlightCostPerPerson;
@@ -118,7 +144,8 @@ function displayPendingTrips() {
 };
   
 function displayPastTrips() {
-  return traveler.filterTripsByTime(currentTraveler, 'pastTrips', 'approved').forEach(trip => {
+  pastTrips.innerHTML = '';
+  return traveler.filterTripsByTime(currentTraveler.id, 'pastTrips', 'approved').forEach(trip => {
       const matchingDestination = traveler.destinationsData.find(destination => destination.id === trip.destinationID)
       const lodgingTotal = trip.duration * matchingDestination.estimatedLodgingCostPerDay;
       const flightTotal = trip.travelers * matchingDestination.estimatedFlightCostPerPerson;
@@ -145,7 +172,8 @@ function displayPastTrips() {
   };
 
 function displayFutureTrips() {
-  return traveler.filterTripsByTime(currentTraveler, 'futureTrips', 'approved').forEach(trip => {
+  futureTrips.innerHTML = '';
+  return traveler.filterTripsByTime(currentTraveler.id, 'futureTrips', 'approved').forEach(trip => {
     const matchingDestination = traveler.destinationsData.find(destination => destination.id === trip.destinationID)
     const lodgingTotal = trip.duration * matchingDestination.estimatedLodgingCostPerDay;
     const flightTotal = trip.travelers * matchingDestination.estimatedFlightCostPerPerson;
@@ -190,7 +218,10 @@ function postData(newTrip) {
         return response.json();
     }
     })
-    .then(() => getFetch())
+    .then(() => {
+      getFetch()
+      displayTravelerPage()
+    })
     .catch(() => showPostResult('unknown'));
 };
 
