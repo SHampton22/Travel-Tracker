@@ -11,6 +11,9 @@ let pendingTrips = document.querySelector('#pendingTrips');
 let futureTrips = document.querySelector('#futureTrips');
 let pastTrips = document.querySelector('#pastTrips');
 let destinationsDropDown = document.querySelector('#destinationsDropDown');
+let form = document.querySelector('.form');
+let postResponseMessage = document.querySelector(".post-Response-Message");
+// let submitFormButton = document.querySelector('#submitFormButton');
 
 let travelersData;
 let tripsData;
@@ -28,10 +31,26 @@ const getFetch = () => {
       traveler = new Traveler(travelersData, tripsData, destinationsData);
       displayTravelerPage()
   });
-  
-}
+};
 
 window.addEventListener('load', getFetch);
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const newTrip = {
+    id: tripsData.length + 1,
+    userID: currentTraveler,
+    destinationID: Number(formData.get('destination')),
+    travelers: Number(formData.get('numberTraveling')),
+    date: formData.get('date').replaceAll("-", "/"),
+    duration: Number(formData.get('duration')),
+    status: 'pending',
+    suggestedActivities: []
+  };
+  postData(newTrip);
+  event.target.reset();
+});
 
 
 function displayTravelerPage() {
@@ -43,6 +62,7 @@ function displayTravelerPage() {
   
 
 };
+
 
 function updateYearlySpent() {
   displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler, '2020')} in travel for 2020!`
@@ -135,6 +155,47 @@ function displayFutureTrips() {
         </article>`;
   });
 };
+
+
+
+function postData(newTrip) {
+  console.log(destinationsData)
+  console.log(newTrip)
+  fetch(`http://localhost:3001/api/v1/trips`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newTrip)
+  })
+    .then(response => {
+      if (!response.ok) { 
+        showPostResult('unknown');
+        throw Error(response.statusText);
+     } else {
+        showPostResult('success');
+        return response.json();
+    }
+    })
+    .then(() => getFetch())
+    .catch(() => showPostResult('unknown'));
+};
+
+function showPostResult(response) {
+  form.classList.add('hidden');
+  postResponseMessage.classList.remove('hidden');
+  if (response === 'success') {
+    postResponseMessage.innerText = 'Success! Your new trip is now pending approval!';
+  } else {
+    form.classList.add('hidden');
+    postResponseMessage.innerText = 'Something went wrong, please try again later';
+  }
+  setTimeout(hideResponseMessage, 4000);
+};
+
+function hideResponseMessage() {
+	form.classList.remove('hidden');
+	postResponseMessage.classList.add('hidden');
+};
+
 
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)

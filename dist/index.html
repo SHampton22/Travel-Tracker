@@ -7,6 +7,14 @@
   <title>Travel Tracker</title>
 </head>
 <body>
+  <!-- <section class="log-in-form">
+    <h1>Login to your travel account</h1>
+    <form>
+      <input type="text" title="username" placeholder="username" />
+      <input type="password" title="username" placeholder="password" />
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </section> -->
   <nav>
     <h1>TRAVEL TRACKER</h1>
     <div>
@@ -15,13 +23,13 @@
       <p id="displayTotalSpent">You have spent this much for this year!</p>
     </div>
     <section class="form-section">
-      <p class="post-result-message hidden"></p>
-      <form class="form">
+      <p class="post-Response-Message hidden"></p>
+      <form class="form" id="form" >
         <h2>Make A New Trip Request</h2>
         <p>Please fill out all fields</p>
         <div>
           <label for="tripDate">Start Date</label>
-          <input type="date" name="date" id="tripDate" value="2020-05-01" min="2020-05-02" max="2023-05-01">
+          <input type="date" name="date" id="tripDate" value="2020-05-01" min="2020-05-02" max="2023-05-01" >
         </div>
         <div>
           <label for="duration">Number of Days (1-20)</label>
@@ -37,7 +45,8 @@
             <option value="" disabled selected hidden>Select A Destination</option>
           </select>
         </div>
-        <button class="trip-request-button">Submit</button>
+        <input type="submit" value="Submit" />
+        <!-- <button id="submitFormButton" >Submit</button> -->
       </form>
     </section>
     <button id="logOutButton">Log Out</button>
