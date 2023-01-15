@@ -1,11 +1,88 @@
 body {
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-}
-
-main {
-  border: solid red;
+  margin: 0;
 }
 
 nav {
   border: solid green;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.traveler-info{
+
+}
+
+.form-section {
+  
+}
+
+.trip-request-button {
+
+}
+
+main {
+  border: solid red;
+  /* margin: 30px; */
+}
+
+.card-holder {
+  align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px;
+  padding: 15px;
+  border: solid black;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+  color: #636465;
+}
+
+.card-header {
+  align-items: flex-start;
+  /* color: white; */
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  height: 170px;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.login-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.login-form {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hidden {
+  display: none;
 }
