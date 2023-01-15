@@ -37,17 +37,14 @@ const getFetch = () => {
       destinationsData = data[2].destinations
       traveler = new Traveler(travelersData, tripsData, destinationsData);
       assignUsernames();
-      
   });
 };
 
-window.addEventListener('load', 
-getFetch);
+window.addEventListener('load', getFetch);
 
 loginButton.addEventListener('click', (event) => {
   event.preventDefault();
   validateUser();
-  
 })
 
 logoutButton.addEventListener('click', (event => {
@@ -69,13 +66,14 @@ form.addEventListener('submit', (event) => {
     status: 'pending',
     suggestedActivities: []
   };
-  postData(newTrip);
+  postData(newTrip)
   event.target.reset();
 });
 
 
+
 function displayTravelerPage() {
-  updateYearlySpent();
+  displayTravelerInfo();
   displayPendingTrips();
   displayFutureTrips();
   displayPastTrips();
@@ -91,7 +89,6 @@ function assignUsernames() {
 };
 
 function validateUser(event) {
-  
   currentTraveler = travelersData.find(traveler => traveler.username === username.value)
   if (password.value === 'travel' && username.value === currentTraveler.username) {
     displayTravelerPage();
@@ -104,9 +101,9 @@ function validateUser(event) {
   loginForm.reset();
 };
 
-function updateYearlySpent() {
-  displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, '2020')} in travel for 2020!`
-  welcomeTraveler.innerText = `Welcome, ${traveler.findTraveler(currentTraveler.id).name}`;
+function displayTravelerInfo() {
+  displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, 'approved')} in travel!`
+  welcomeTraveler.innerText = `Welcome, ${currentTraveler.name}`;
 };
 
 function createDestinationsDropDown() {
@@ -137,7 +134,7 @@ function displayPendingTrips() {
           </div>
           <footer class="card-footer">
             <p>Status: ${trip.status}</p>
-            <p>Total Investment: $${tripTotal}</p>
+            <p>Estimated Investment: $${tripTotal}</p>
           </footer>
         </article>`;
   });
@@ -202,7 +199,7 @@ function displayFutureTrips() {
 
 
 function postData(newTrip) {
-  console.log(destinationsData)
+  console.log(tripsData)
   console.log(newTrip)
   fetch(`http://localhost:3001/api/v1/trips`, {
     method: 'POST',
@@ -218,11 +215,24 @@ function postData(newTrip) {
         return response.json();
     }
     })
-    .then(() => {
-      getFetch()
-      displayTravelerPage()
+    .then((data) => {
+      console.log('should fetch', data)
+      // getFetch();
+      fetchData()
+      .then(data => {
+        // console.log('data', data[0].travelers)
+        // travelersData = data[0].travelers
+        tripsData = data[1].trips
+        // destinationsData = data[2].destinations
+        traveler = new Traveler(travelersData, tripsData, destinationsData);
+      displayPendingTrips();
+        
     })
-    .catch(() => showPostResult('unknown'));
+       
+    })
+      
+  
+    .catch((error) => console.log(error/*showPostResult('unknown')*/));
 };
 
 function showPostResult(response) {
