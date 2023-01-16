@@ -32,7 +32,7 @@ class Traveler {
   };
 
   calculateYearlyExpense(travelerId, status) {
-    return this.filterTravelersTripsByStatus(travelerId, status).reduce((yearlyExpense, trip) => {
+    const totalExpense = this.filterTravelersTripsByStatus(travelerId, status).reduce((yearlyExpense, trip) => {
       const matchingDestination = this.destinationsData.find(destination => destination.id === trip.destinationID);
       const lodgingTotal = trip.duration * matchingDestination.estimatedLodgingCostPerDay;
       const flightTotal = trip.travelers * matchingDestination.estimatedFlightCostPerPerson;
@@ -40,8 +40,9 @@ class Traveler {
       const agentFee = tripCost * .10;
       const tripTotal = tripCost + agentFee;
       yearlyExpense += tripTotal;
-      return yearlyExpense;
-    }, 0);
+      return yearlyExpense
+    }, 0)
+    return totalExpense;
   };
   
 

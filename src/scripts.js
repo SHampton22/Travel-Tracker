@@ -16,7 +16,7 @@ let postResponseMessage = document.querySelector(".post-Response-Message");
 let loginPage = document.querySelector('.login-page');
 let nav = document.querySelector('.nav');
 let main = document.querySelector('.main');
-let loginButton = document.querySelector('.loginButton');
+let loginButton = document.querySelector('#loginButton');
 let username = document.querySelector('#username');
 let password = document.querySelector('#password');
 let loginResponseMessage = document.querySelector('.login-response-message');
@@ -27,6 +27,11 @@ let tripsData;
 let destinationsData;
 let traveler 
 let currentTraveler;
+//  = {
+//   id: 7,
+//   name: "Emmet Sandham",
+//   travelerType: "relaxer"
+//   }
 
 const getFetch = () => {
   fetchData()
@@ -40,18 +45,21 @@ const getFetch = () => {
   });
 };
 
-window.addEventListener('load', getFetch);
+window.addEventListener('load', (event) => {
+  getFetch()
+  // displayTravelerPage();
+});
 
 loginButton.addEventListener('click', (event) => {
   event.preventDefault();
   validateUser();
-})
+});
 
 logoutButton.addEventListener('click', (event => {
   nav.classList.add('hidden');
   main.classList.add('hidden');
   loginPage.classList.remove('hidden');
-}))
+}));
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -102,7 +110,7 @@ function validateUser(event) {
 };
 
 function displayTravelerInfo() {
-  displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, 'approved')} in travel!`
+  displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, 'approved').toLocaleString()} in travel!`
   welcomeTraveler.innerText = `Welcome, ${currentTraveler.name}`;
 };
 
@@ -121,6 +129,7 @@ function displayPendingTrips() {
     const tripCost = lodgingTotal + flightTotal;
     const agentFee = tripCost * .10;
     const tripTotal = tripCost + agentFee;
+   
     pendingTrips.innerHTML +=
       `<article class="card">
           <header class="card-header">
@@ -134,7 +143,7 @@ function displayPendingTrips() {
           </div>
           <footer class="card-footer">
             <p>Status: ${trip.status}</p>
-            <p>Estimated Investment: $${tripTotal}</p>
+            <p>Estimated Investment: $${tripTotal.toLocaleString()}</p>
           </footer>
         </article>`;
   });
@@ -162,7 +171,7 @@ function displayPastTrips() {
             </div>
             <footer class="card-footer">
               <p>Status: ${trip.status}</p>
-              <p>Total Investment: $${tripTotal}</p>
+              <p>Total Investment: $${tripTotal.toLocaleString()}</p>
             </footer>
           </article>`;
     });
@@ -190,7 +199,7 @@ function displayFutureTrips() {
           </div>
           <footer class="card-footer">
             <p>Status: ${trip.status}</p>
-            <p>Total Investment: $${tripTotal}</p>
+            <p>Total Investment: $${tripTotal.toLocaleString()}</p>
           </footer>
         </article>`;
   });
