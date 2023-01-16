@@ -40,12 +40,11 @@ class Traveler {
       const agentFee = tripCost * .10;
       const tripTotal = tripCost + agentFee;
       yearlyExpense += tripTotal;
-      return yearlyExpense
+      return yearlyExpense;
     }, 0)
     return totalExpense;
   };
   
-
 }
 
 

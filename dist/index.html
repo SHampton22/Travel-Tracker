@@ -7,32 +7,13 @@
   <title>Travel Tracker</title>
 </head>
 <body>
-  <section class="login-page ">
-    <h1>Welcome to Travel Tracker</h1>
-    <form class="login-form">
-      <h2>Login</h2>
-      <p class="login-response-message hidden">Incorrect username/password</p>
-      <div>
-        <label for="username">Please enter your username</label>
-        <input type="text" id="username" name="username" placeholder="username" required />
-      </div>
-      <div>
-        <label for="password">Please enter your password</label>
-        <input type="password" id="password" name="password" placeholder="password" required />
-      </div>
-      <button id="loginButton" type="submit" class="button">Login</button>
-    </form>
-  </section>
-  <nav class="nav hidden">
+  <nav class="nav">
     <h1>🗺️ TRAVEL TRACKER</h1>
-    <div>
       <h2 id="welcomeTraveler">Welcome, Traveler</h2>
-      <p>Today is Friday May 01, 2020</p>
       <p id="displayTotalSpent">You have spent this much for this year!</p>
-    </div>
     <button class="button" id="logoutButton">Log Out</button>
   </nav>
-  <main class="main hidden">
+  <main class="main">
     <section class="form-section">
       <div class="trip-form">
         <p class="post-Response-Message hidden"></p>
@@ -59,10 +40,9 @@
               <input type="number" id="numberTraveling" name="numberTraveling" placeholder="✈️ Travelers (1-6)" min="1" max="6" oninput="validity.valid||(value='');" required />
             </div>
           </div>
-          <div>
+          <div class="trip-request-button">
             <input class="button" type="submit" value="Submit" />
           </div>
-          <!-- <button id="submitFormButton" >Submit</button> -->
         </form>
       </div>
     </section>
@@ -78,7 +58,6 @@
       </div>
     </section>
   </main>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 </body>
 </html>

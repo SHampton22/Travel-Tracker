@@ -13,7 +13,7 @@ body {
 }
 
 nav {
-  border: solid green;
+  
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -22,8 +22,8 @@ nav {
   left: 0;
   right: 0;
   z-index: 9999;
-  background-color: #33658a;
-  color: white;
+  background-color: white;
+  color: #505c66;
 }
 
 h1 {
@@ -34,12 +34,8 @@ h1 {
 .form-section {
   justify-content: center;
   display: flex;
-  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
-  background: url(../images/hugh-whyte-SBOHLtENzEY-unsplash.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  /* box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3); */
+  
 }
 
 .trip-form {
@@ -56,6 +52,10 @@ h1 {
 
 .input-fields {
   display: flex;
+}
+
+.trip-request-button {
+  margin-top: 40px;
 }
 
 .button {
@@ -98,13 +98,18 @@ input, select {
 }
 
 main {
-  
-  border: solid red;
-  margin-top: 140px;
+  background: url(../images/hugh-whyte-SBOHLtENzEY-unsplash.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* border: solid red; */
+  margin-top: 71px;
 }
 
 .display-trips {
-  border: solid yellow;
+  /* border: solid yellow; */
+  background-color:rgb( 240, 243, 245, 0.8);
 }
 
 .card-holder {
@@ -113,7 +118,8 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 10px;
   padding: 15px;
-  border: solid black;
+  /* border: solid black; */
+  /* background-color:rgb( 240, 243, 245, 0.8); */
 }
 
 .card {
@@ -124,23 +130,30 @@ main {
 
 .card-header {
   align-items: flex-start;
-  /* color: white; */
   display: flex;
-  height: 90px;
-  justify-content: space-between;
-  padding: 10px;
+  height: 50px;
+  flex-direction: column;
+  padding: 10px 0 0 10px;
 }
 
 .card-body {
   display: flex;
   flex-direction: column;
   height: 170px;
-  justify-content: space-between;
-  padding: 20px;
+  align-items: center;
+}
+
+.card-footer {
+  padding-left: 10px;
 }
 
 h3 {
   margin-left: 15px;
+  color: #505c66;
+}
+
+h4 {
+  margin: 0;
 }
 
 .login-page {
