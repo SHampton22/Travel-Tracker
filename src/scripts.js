@@ -63,7 +63,10 @@ function displayTravelerPage() {
 };
 
 function displayTravelerInfo() {
-  displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, 'approved').toLocaleString()} in travel!`
+  displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, 'approved').toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })} in travel!`
   welcomeTraveler.innerText = `Hello, ${currentTraveler.name}`;
 };
 
@@ -96,7 +99,10 @@ function displayPendingTrips() {
             <p>Number of Travelers: ${trip.travelers}</p>
             <p>Trip Duration: ${trip.duration} days</p>
             <p>Status: ${trip.status} approval</p>
-            <p>Estimated Investment: $${tripTotal.toLocaleString()}</p>
+            <p>Estimated Investment: $${tripTotal.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            })}</p>
           </footer>
         </article>`;
   });
@@ -124,7 +130,10 @@ function displayPastTrips() {
             <p>Trip Duration: ${trip.duration} days</p>
             <p>Number of Travelers: ${trip.travelers}</p>
             <p>Status: ${trip.status}</p>
-            <p>Total Investment: $${tripTotal.toLocaleString()}</p>
+            <p>Total Investment: $${tripTotal.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            })}</p>
           </footer>
         </article>`;
     });
@@ -152,7 +161,10 @@ function displayFutureTrips() {
             <p>Trip Duration: ${trip.duration} days</p>
             <p>Number of Travelers: ${trip.travelers}</p>
             <p>Status: ${trip.status}</p>
-            <p>Total Investment: $${tripTotal.toLocaleString()}</p>
+            <p>Total Investment: $${tripTotal.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            })}</p>
           </footer>
         </article>`;
   });
