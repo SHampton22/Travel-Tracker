@@ -64,7 +64,7 @@ function displayTravelerPage() {
 
 function displayTravelerInfo() {
   displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, 'approved').toLocaleString()} in travel!`
-  welcomeTraveler.innerText = `Welcome, ${currentTraveler.name}`;
+  welcomeTraveler.innerText = `Hello, ${currentTraveler.name}`;
 };
 
 function createDestinationsDropDown() {
