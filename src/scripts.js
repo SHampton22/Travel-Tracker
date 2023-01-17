@@ -6,16 +6,17 @@ import Traveler from './Traveler';
 
 let welcomeTraveler = document.querySelector('#welcomeTraveler');
 let displayTotalSpent = document.querySelector('#displayTotalSpent');
-let logoutButton = document.querySelector('#logoutButton');
 let pendingTrips = document.querySelector('#pendingTrips');
 let futureTrips = document.querySelector('#futureTrips');
 let pastTrips = document.querySelector('#pastTrips');
 let destinationsDropDown = document.querySelector('#destinationsDropDown');
 let form = document.querySelector('.form');
 let postResponseMessage = document.querySelector(".post-Response-Message");
-let loginPage = document.querySelector('.login-page');
+
 let nav = document.querySelector('.nav');
 let main = document.querySelector('.main');
+let logoutButton = document.querySelector('#logoutButton');
+let loginPage = document.querySelector('.login-page');
 let loginButton = document.querySelector('#loginButton');
 let username = document.querySelector('#username');
 let password = document.querySelector('#password');
@@ -105,13 +106,17 @@ function validateUser(event) {
     loginPage.classList.add('hidden');
   } else {
     loginResponseMessage.classList.remove('hidden');
+    setTimeout(function(){
+      loginForm.reset();
+      loginResponseMessage.classList.add('hidden');
+      },3000);
   }
   loginForm.reset();
 };
 
 function displayTravelerInfo() {
   displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, 'approved').toLocaleString()} in travel!`
-  welcomeTraveler.innerText = `Welcome, ${currentTraveler.name}`;
+  welcomeTraveler.innerText = `Hellp, ${currentTraveler.name}`;
 };
 
 function createDestinationsDropDown() {
@@ -132,20 +137,20 @@ function displayPendingTrips() {
    
     pendingTrips.innerHTML +=
       `<article class="card">
-          <header class="card-header">
-            <h3>Destination: ${matchingDestination.destination}</h3>
-            <p>Start Date: ${trip.date}</p>
-            </header>
+        <header class="card-header">
+          <h4>${matchingDestination.destination}</h4>
+        </header>
           <div class="card-body">
-            <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}"/>
-            <p>Length of Stay: ${trip.duration} days</p>
-            <p>Number of Travelers: ${trip.travelers}</p>
+            <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}" width="180" height="400"/>
           </div>
-          <footer class="card-footer">
-            <p>Status: ${trip.status}</p>
-            <p>Estimated Investment: $${tripTotal.toLocaleString()}</p>
-          </footer>
-        </article>`;
+        <footer class="card-footer">
+          <p>Check-in: ${trip.date}</p>
+          <p>Number of Travelers: ${trip.travelers}</p>
+          <p>Trip Duration: ${trip.duration} days</p>
+          <p>Status: ${trip.status} approval</p>
+          <p>Estimated Investment: $${tripTotal.toLocaleString()}</p>
+        </footer>
+      </article>`;
   });
 };
   
@@ -159,21 +164,21 @@ function displayPastTrips() {
       const agentFee = tripCost * .10;
       const tripTotal = tripCost + agentFee;
       pastTrips.innerHTML +=
-        `<article class="card">
-            <header class="card-header">
-              <h3>Destination: ${matchingDestination.destination}</h3>
-              <p>Start Date: ${trip.date}</p>
-              </header>
-            <div class="card-body">
-              <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}"/>
-              <p>Length of Stay: ${trip.duration} days</p>
-              <p>Number of Travelers: ${trip.travelers}</p>
-            </div>
-            <footer class="card-footer">
-              <p>Status: ${trip.status}</p>
-              <p>Total Investment: $${tripTotal.toLocaleString()}</p>
-            </footer>
-          </article>`;
+      `<article class="card">
+        <header class="card-header">
+          <h4>${matchingDestination.destination}</h4>
+        </header>
+        <div class="card-body">
+          <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}" width="180" height="400"/>
+        </div>
+        <footer class="card-footer">
+          <p>Check-in: ${trip.date}</p>
+          <p>Trip Duration: ${trip.duration} days</p>
+          <p>Number of Travelers: ${trip.travelers}</p>
+          <p>Status: ${trip.status}</p>
+          <p>Total Investment: $${tripTotal.toLocaleString()}</p>
+        </footer>
+      </article>`;
     });
   };
 
@@ -187,21 +192,21 @@ function displayFutureTrips() {
     const agentFee = tripCost * .10;
     const tripTotal = tripCost + agentFee;
     futureTrips.innerHTML +=
-      `<article class="card">
-          <header class="card-header">
-            <h3>Destination: ${matchingDestination.destination}</h3>
-            <p>Start Date: ${trip.date}</p>
-            </header>
-          <div class="card-body">
-            <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}"/>
-            <p>Length of Stay: ${trip.duration} days</p>
-            <p>Number of Travelers: ${trip.travelers}</p>
-          </div>
-          <footer class="card-footer">
-            <p>Status: ${trip.status}</p>
-            <p>Total Investment: $${tripTotal.toLocaleString()}</p>
-          </footer>
-        </article>`;
+    `<article class="card">
+      <header class="card-header">
+        <h4>${matchingDestination.destination}</h4>
+      </header>
+      <div class="card-body">
+        <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}" width="180" height="400"/>
+      </div>
+      <footer class="card-footer">
+        <p>Check-in: ${trip.date}</p>
+        <p>Trip Duration: ${trip.duration} days</p>
+        <p>Number of Travelers: ${trip.travelers}</p>
+        <p>Status: ${trip.status}</p>
+        <p>Total Investment: $${tripTotal.toLocaleString()}</p>
+      </footer>
+    </article>`;
   });
 };
 
