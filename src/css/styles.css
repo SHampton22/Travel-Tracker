@@ -56,35 +56,47 @@ h1 {
   margin: 0.9375em 0 0.9375em 0;
 }
 
-.input-fields {
-  display: flex;
-}
+
 
 .trip-request-button {
   margin-top: 2em;
  
 }
 
+
+input, select {
+  min-width: 100px;
+  text-align: center;
+  /* padding: 12px 24px; */
+  color: #505c66;
+  border: none;
+  border-radius: 8px;
+  margin-right: 15px;
+  width: 250px;  
+  height: 30px;
+}
+
 .button {
   min-width: 6.25em;
   text-align: center;
-  padding: 0.75em 1.5em;
+  padding: 0;
   color: #f0f3f5;
   border: none;
   border-radius: 0.5em;
   margin-right: 0.9375em;
   background-color: #0174C2;
   box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+  width: 150px;  
+  height: 40px;
 }
 
-input, select {
-  min-width: 100px;
-  text-align: center;
-  padding: 12px 24px;
-  color: #505c66;
-  border: none;
-  border-radius: 8px;
-  margin-right: 15px;
+.input-fields {
+  display: flex;
+  
+}
+
+.destinations-dropdown {
+  margin-left: 100px;
 }
 
 .traveler-info{
@@ -99,9 +111,7 @@ input, select {
  height: 100%;
 }
 
-.trip-request-button {
 
-}
 
 main {
   background: url(../images/pexels-asad-photo-maldives-457882.jpg) no-repeat center center fixed; 
