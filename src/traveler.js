@@ -44,8 +44,7 @@ class Traveler {
     }, 0)
     return totalExpense;
   };
-  
-
+ 
 }
 
 

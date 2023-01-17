@@ -28,11 +28,6 @@ let tripsData;
 let destinationsData;
 let traveler 
 let currentTraveler;
-//  = {
-//   id: 7,
-//   name: "Emmet Sandham",
-//   travelerType: "relaxer"
-//   }
 
 const getFetch = () => {
   fetchData()
@@ -48,7 +43,6 @@ const getFetch = () => {
 
 window.addEventListener('load', (event) => {
   getFetch()
-  // displayTravelerPage();
 });
 
 loginButton.addEventListener('click', (event) => {
@@ -75,13 +69,10 @@ form.addEventListener('submit', (event) => {
     status: 'pending',
     suggestedActivities: []
   };
-
   
   postData(newTrip)
   event.target.reset();
 });
-
-
 
 function displayTravelerPage() {
   displayTravelerInfo();
@@ -89,8 +80,6 @@ function displayTravelerPage() {
   displayFutureTrips();
   displayPastTrips();
   createDestinationsDropDown();
-  
-
 };
 
 function assignUsernames() {
@@ -212,8 +201,6 @@ function displayFutureTrips() {
   });
 };
 
-
-
 function postData(newTrip) {
   console.log(tripsData)
   console.log(newTrip)
@@ -232,22 +219,13 @@ function postData(newTrip) {
     }
     })
     .then((data) => {
-      console.log('should fetch', data)
-      // getFetch();
       fetchData()
       .then(data => {
-        // console.log('data', data[0].travelers)
-        // travelersData = data[0].travelers
         tripsData = data[1].trips
-        // destinationsData = data[2].destinations
         traveler = new Traveler(travelersData, tripsData, destinationsData);
       displayPendingTrips();
-        
+      })
     })
-       
-    })
-      
-  
     .catch((error) => console.log(error/*showPostResult('unknown')*/));
 };
 
@@ -267,8 +245,6 @@ function hideResponseMessage() {
 	form.classList.remove('hidden');
 	postResponseMessage.classList.add('hidden');
 };
-
-
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
