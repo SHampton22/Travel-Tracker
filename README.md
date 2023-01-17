@@ -2,12 +2,12 @@
 
 ## Contributor
 
- Sarah Hampton 
+ Sarah Hampton [GitHub](https://github.com/SHampton22), [LinkedIn](https://www.linkedin.com/in/sarah-hampton-684083255/)
 
 <br />
 <div align="center">
   <a href="https://github.com/SHampton22/Travel-Tracker">
-    <img src="src/images/travel-tracker-logo.png" alt="Logo" width="125px" height="125px">
+    
   </a>
 
 <h3 align="center">Travel Tracker</h3>
