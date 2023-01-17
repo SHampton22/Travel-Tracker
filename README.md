@@ -2,12 +2,12 @@
 
 ## Contributor
 
- [![Sarah][sarah-badge]][sarah-url]
+ Sarah Hampton 
 
 <br />
 <div align="center">
   <a href="https://github.com/SHampton22/Travel-Tracker">
-    <img src="src/images/travel-logo.png" alt="Logo" width="125px" height="125px">
+    <img src="src/images/travel-tracker-logo.png" alt="Logo" width="125px" height="125px">
   </a>
 
 <h3 align="center">Travel Tracker</h3>
@@ -48,17 +48,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-  I created a travel tracking application that allows a user to see the information on their past, current and pending trips.I utilize a login page with username and passwords that are unique to the user. I used a local server and incorporated fetch request to GET and POST data. Error handling was added to both fetch GET and POST requests to catch errors that may occur from either request. Features added allows users to see all data displayed in a visually pleasing manner. I utilized dayjs to format and standardize dates that are used throughout to conform dates. The user can search for trips using inputs and text fields to search for a sepcific a vacation. After the user submits all provided fields and they click submit, a photo of the specified placed appears with the amount of lodging cost and flight cost. It will also show the estimated cost for that specific trip. The user then has the option to book that trip or go back and search for a new trip. I added a helper function file to house functions that are use mulitiple times throughout the project to keep my code DRY. 
+  I created a travel tracking application that allows a user to see their past, current and pending trip information. I utilize a login page with username and passwords that are unique to the user. I used a local server and incorporated fetch request to GET and POST data. Error handling was added to both fetch GET and POST requests to catch errors that may occur from either request. Features added allows users to see all data displayed in a visually pleasing manner. I utilized dayjs to format and standardize dates that are used throughout to conform dates. The user can search for trips using inputs and text fields to search for a sepcific a vacation. After the user submits all provided fields and they click submit, a card of the specified trip appears in the pending trip section with the selected trip inputs and estimated trip cost. 
 
 
 
@@ -132,10 +122,11 @@ See the [open issues](https://github.com/SHampton22/Travel-Tracker).
 
 ## Future Additions
 
-- Add testing to helper function file
-- Add logout feature
-- Add a slider/glider for vacation display
-- Add page load to inform the user that the page is loading
+- Add sad path testing
+- Display user info on hover in navigation bar
+
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
