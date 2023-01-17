@@ -183,7 +183,7 @@ function showPostResult(response) {
   form.classList.add('hidden');
   postResponseMessage.classList.remove('hidden');
   if (response === 'success') {
-    postResponseMessage.innerText = 'Success! Your new trip is now pending approval!';
+    postResponseMessage.innerText = 'Success! Your trip request is now pending approval!';
   } else {
     form.classList.add('hidden');
     postResponseMessage.innerText = 'Something went wrong, please try again later';
