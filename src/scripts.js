@@ -70,11 +70,13 @@ form.addEventListener('submit', (event) => {
     userID: currentTraveler.id,
     destinationID: Number(formData.get('destination')),
     travelers: Number(formData.get('numberTraveling')),
-    date: formData.get('date').replaceAll("-", "/"),
+    date: formData.get('tripDate').replaceAll("-", "/"),
     duration: Number(formData.get('duration')),
     status: 'pending',
     suggestedActivities: []
   };
+
+  
   postData(newTrip)
   event.target.reset();
 });
@@ -116,7 +118,7 @@ function validateUser(event) {
 
 function displayTravelerInfo() {
   displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, 'approved').toLocaleString()} in travel!`
-  welcomeTraveler.innerText = `Hellp, ${currentTraveler.name}`;
+  welcomeTraveler.innerText = `Hello, ${currentTraveler.name}`;
 };
 
 function createDestinationsDropDown() {

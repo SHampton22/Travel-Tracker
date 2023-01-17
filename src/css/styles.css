@@ -134,8 +134,6 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 0.625em;
   padding: 0.9375em;
-  /* border: solid black; */
-  /* background-color:rgb( 240, 243, 245, 0.8); */
 }
 
 .card {
@@ -167,7 +165,6 @@ main {
 h3 {
   margin: 0 0 0 0.9375em;
   color: #505c66;
- 
 }
 
 h4 {
@@ -175,19 +172,18 @@ h4 {
 }
 
 .login-page {
+  position: relative;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background: url(../images/pexels-asad-photo-maldives-457882.jpg) no-repeat center center fixed; 
+  background: linear-gradient(rgba(255, 255, 255, 0.3),rgba(0, 0, 0, 0.3)), url(../images/pexels-asad-photo-maldives-457882.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
- 
 }
-
 
 .login-form {
   color: #505c66;
@@ -202,11 +198,10 @@ h4 {
   text-align: center;
 }
 
-
-
 .login-response-message {
   color: red;
 }
+
 .login-label {
   color: white;
 }
