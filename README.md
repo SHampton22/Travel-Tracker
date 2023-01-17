@@ -1,99 +1,163 @@
-# Webpack Starter Kit
+<a name="readme-top"></a>
 
-## Clone This Repo
+## Contributor
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+ [![Sarah][sarah-badge]][sarah-url]
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+<br />
+<div align="center">
+  <a href="https://github.com/SHampton22/Travel-Tracker">
+    <img src="src/images/travel-logo.png" alt="Logo" width="125px" height="125px">
+  </a>
 
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+<h3 align="center">Travel Tracker</h3>
 
-## Setup
+  <p align="center">
+    Travel Tracking App
+    <br />
+    <a href="https://github.com/SHampton22/Travel-Tracker"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/SHampton22/Travel-Tracker/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/SHampton22/Travel-Tracker/issues">Request Feature</a>
+  </p>
+</div>
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+  </ol>
+</details>
 
-Then install the library dependencies. Run:
+## About The Project
 
-```bash
-npm install
-```
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
 
-## Where to Add Your Code
 
-### JavaScript
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
 
-**Create all of your feature code files in the `src` directory.**
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
 
-### HTML
 
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
 
-### Images
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
 
-## How to View Your Code in Action
 
-In the terminal, run:
+  I created a travel tracking application that allows a user to see the information on their past, current and pending trips.I utilize a login page with username and passwords that are unique to the user. I used a local server and incorporated fetch request to GET and POST data. Error handling was added to both fetch GET and POST requests to catch errors that may occur from either request. Features added allows users to see all data displayed in a visually pleasing manner. I utilized dayjs to format and standardize dates that are used throughout to conform dates. The user can search for trips using inputs and text fields to search for a sepcific a vacation. After the user submits all provided fields and they click submit, a photo of the specified placed appears with the amount of lodging cost and flight cost. It will also show the estimated cost for that specific trip. The user then has the option to book that trip or go back and search for a new trip. I added a helper function file to house functions that are use mulitiple times throughout the project to keep my code DRY. 
 
-```bash
-npm start
-```
 
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
 
-```bash
-Project is running at http://localhost:8080/
-```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
+### Built With
 
----
+- [![Javascript][javascript.js]][javascript-url]
+- [![CSS][css]][css-url]
+- [![HTML][html]][html-url]
+- [![Webpack][webpack]][webpack-url]
+- [![API][api]][api-url]
+- [![Mocha][mocha]][mocha-url]
+- [![Chai][chai]][chai-url]
+- [![Git][git]][git-url]
+- [![GitHub][github]][github-url]
+- [![dayjs][dayjs]][dayjs-url]
 
-## Test Files Organization
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
+## Getting Started
 
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
+### Installation
 
-## Running Your Tests
+1. Fork the Repo from the [Repository](https://github.com/SHampton22/Travel-Tracker)
+2. Clone the repo
+   ```sh
+   git clone git@github.com:SHampton22/Travel-Tracker.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Run npm start
+   ```sh
+   npm start
+   ```
+5. Use the Link that is given in the Terminal & Open in Browser
+   ```sh
+   Example: http://localhost:8080/
+   ```
+   
+## API Installation
 
-Run your test suite using the command:
+6. Clone the repo
+      ```sh
+   git clone git@github.com:turingschool-examples/travel-tracker-api.git
+   ```
+7. cd into it from terminal
+8. Install NPM packages
+   ```sh
+   npm install
+   ```
+9. Run npm start
+   ```sh
+   npm start
+   ```
+10. Close using control + c
 
-```bash
-npm test
-```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-The test results will output to the terminal.
+<!-- ROADMAP -->
 
----
+## Roadmap
 
-## Linting Your Code
+- [x] Past, Current and Upcoming Vacations
+- [x] Form input to input desired vacation
+- [x] Display vacation with estimated price with added fee
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
+See the [open issues](https://github.com/SHampton22/Travel-Tracker).
 
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
+## Future Additions
 
-## Webpack?
+- Add testing to helper function file
+- Add logout feature
+- Add a slider/glider for vacation display
+- Add page load to inform the user that the page is loading
 
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
+[jordan-badge]: https://img.shields.io/badge/-Sarah%20Hampton-lightgrey
+[jordan-url]: https://github.com/SHampton22
+[mocha]: https://img.shields.io/badge/Mocha-FF2D20?style=for-the-badge&logo=mocha&logoColor=white
+[mocha-url]: https://mochajs.org/
+[chai]: https://img.shields.io/badge/Chai-20232A?style=for-the-badge&logo=chai&logoColor=61DAFB
+[chai-url]: https://www.chaijs.com/
+[webpack]: https://img.shields.io/badge/Webpack-563D7C?style=for-the-badge&logo=webpack&logoColor=white
+[webpack-url]: https://webpack.js.org/
+[dayjs]: https://img.shields.io/badge/-dayjs-fb6052?style=for-the-badge
+[dayjs-url]: https://www.npmjs.com/package/dayjs
+[css]: https://img.shields.io/badge/CSS-000000?style=for-the-badge&logo=css&logoColor=white
+[css-url]: https://www.w3.org/Style/CSS/Overview.en.html
+[html]: https://img.shields.io/badge/HTML-4A4A55?style=for-the-badge&logo=HTML&logoColor=FF3E00
+[html-url]: https://www.w3schools.com/howto/howto_make_a_website.asp
+[javascript.js]: https://img.shields.io/badge/JavaScript-0769AD?style=for-the-badge&logo=javascript&logoColor=white
+[javascript-url]: https://www.javascript.com/
+[api]: https://img.shields.io/badge/API-15EA75?style=for-the-badge&logo=HTML&logoColor=FF3E00
+[api-url]: https://www.w3schools.com/js/js_api_intro.asp
+[github]: https://img.shields.io/badge/GitHub-22043C?style=for-the-badge&logo=github&logoColor=FF3E00
+[github-url]: https://github.com/
+[git]: https://img.shields.io/badge/Git-2E0305?style=for-the-badge&logo=git&logoColor=FF3E00
+[git-url]: https://git-scm.com/

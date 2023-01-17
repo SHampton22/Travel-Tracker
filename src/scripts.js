@@ -6,17 +6,18 @@ import Traveler from './Traveler';
 
 let welcomeTraveler = document.querySelector('#welcomeTraveler');
 let displayTotalSpent = document.querySelector('#displayTotalSpent');
-let logoutButton = document.querySelector('#logoutButton');
 let pendingTrips = document.querySelector('#pendingTrips');
 let futureTrips = document.querySelector('#futureTrips');
 let pastTrips = document.querySelector('#pastTrips');
 let destinationsDropDown = document.querySelector('#destinationsDropDown');
 let form = document.querySelector('.form');
 let postResponseMessage = document.querySelector(".post-Response-Message");
-let loginPage = document.querySelector('.login-page');
+
 let nav = document.querySelector('.nav');
 let main = document.querySelector('.main');
-let loginButton = document.querySelector('.loginButton');
+let logoutButton = document.querySelector('#logoutButton');
+let loginPage = document.querySelector('.login-page');
+let loginButton = document.querySelector('#loginButton');
 let username = document.querySelector('#username');
 let password = document.querySelector('#password');
 let loginResponseMessage = document.querySelector('.login-response-message');
@@ -37,24 +38,23 @@ const getFetch = () => {
       destinationsData = data[2].destinations
       traveler = new Traveler(travelersData, tripsData, destinationsData);
       assignUsernames();
-      
   });
 };
 
-window.addEventListener('load', 
-getFetch);
+window.addEventListener('load', (event) => {
+  getFetch()
+});
 
 loginButton.addEventListener('click', (event) => {
   event.preventDefault();
   validateUser();
-  
-})
+});
 
 logoutButton.addEventListener('click', (event => {
   nav.classList.add('hidden');
   main.classList.add('hidden');
   loginPage.classList.remove('hidden');
-}))
+}));
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -64,24 +64,22 @@ form.addEventListener('submit', (event) => {
     userID: currentTraveler.id,
     destinationID: Number(formData.get('destination')),
     travelers: Number(formData.get('numberTraveling')),
-    date: formData.get('date').replaceAll("-", "/"),
+    date: formData.get('tripDate').replaceAll("-", "/"),
     duration: Number(formData.get('duration')),
     status: 'pending',
     suggestedActivities: []
   };
-  postData(newTrip);
+  
+  postData(newTrip)
   event.target.reset();
 });
 
-
 function displayTravelerPage() {
-  updateYearlySpent();
+  displayTravelerInfo();
   displayPendingTrips();
   displayFutureTrips();
   displayPastTrips();
   createDestinationsDropDown();
-  
-
 };
 
 function assignUsernames() {
@@ -91,7 +89,6 @@ function assignUsernames() {
 };
 
 function validateUser(event) {
-  
   currentTraveler = travelersData.find(traveler => traveler.username === username.value)
   if (password.value === 'travel' && username.value === currentTraveler.username) {
     displayTravelerPage();
@@ -100,13 +97,20 @@ function validateUser(event) {
     loginPage.classList.add('hidden');
   } else {
     loginResponseMessage.classList.remove('hidden');
+    setTimeout(function(){
+      loginForm.reset();
+      loginResponseMessage.classList.add('hidden');
+      },3000);
   }
   loginForm.reset();
 };
 
-function updateYearlySpent() {
-  displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, '2020')} in travel for 2020!`
-  welcomeTraveler.innerText = `Welcome, ${traveler.findTraveler(currentTraveler.id).name}`;
+function displayTravelerInfo() {
+  displayTotalSpent.innerText = `You have invested $${traveler.calculateYearlyExpense(currentTraveler.id, 'approved').toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })} in travel!`
+  welcomeTraveler.innerText = `Hello, ${currentTraveler.name}`;
 };
 
 function createDestinationsDropDown() {
@@ -124,22 +128,26 @@ function displayPendingTrips() {
     const tripCost = lodgingTotal + flightTotal;
     const agentFee = tripCost * .10;
     const tripTotal = tripCost + agentFee;
+   
     pendingTrips.innerHTML +=
       `<article class="card">
-          <header class="card-header">
-            <h3>Destination: ${matchingDestination.destination}</h3>
-            <p>Start Date: ${trip.date}</p>
-            </header>
+        <header class="card-header">
+          <h4>${matchingDestination.destination}</h4>
+        </header>
           <div class="card-body">
-            <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}"/>
-            <p>Length of Stay: ${trip.duration} days</p>
-            <p>Number of Travelers: ${trip.travelers}</p>
+            <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}" width="180" height="400"/>
           </div>
-          <footer class="card-footer">
-            <p>Status: ${trip.status}</p>
-            <p>Total Investment: $${tripTotal}</p>
-          </footer>
-        </article>`;
+        <footer class="card-footer">
+          <p>Check-in: ${trip.date}</p>
+          <p>Number of Travelers: ${trip.travelers}</p>
+          <p>Trip Duration: ${trip.duration} days</p>
+          <p>Status: ${trip.status} approval</p>
+          <p>Estimated Investment: $${tripTotal.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          })}</p>
+        </footer>
+      </article>`;
   });
 };
   
@@ -153,21 +161,24 @@ function displayPastTrips() {
       const agentFee = tripCost * .10;
       const tripTotal = tripCost + agentFee;
       pastTrips.innerHTML +=
-        `<article class="card">
-            <header class="card-header">
-              <h3>Destination: ${matchingDestination.destination}</h3>
-              <p>Start Date: ${trip.date}</p>
-              </header>
-            <div class="card-body">
-              <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}"/>
-              <p>Length of Stay: ${trip.duration} days</p>
-              <p>Number of Travelers: ${trip.travelers}</p>
-            </div>
-            <footer class="card-footer">
-              <p>Status: ${trip.status}</p>
-              <p>Total Investment: $${tripTotal}</p>
-            </footer>
-          </article>`;
+      `<article class="card">
+        <header class="card-header">
+          <h4>${matchingDestination.destination}</h4>
+        </header>
+        <div class="card-body">
+          <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}" width="180" height="400"/>
+        </div>
+        <footer class="card-footer">
+          <p>Check-in: ${trip.date}</p>
+          <p>Trip Duration: ${trip.duration} days</p>
+          <p>Number of Travelers: ${trip.travelers}</p>
+          <p>Status: ${trip.status}</p>
+          <p>Total Investment: $${tripTotal.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          })}</p>
+        </footer>
+      </article>`;
     });
   };
 
@@ -181,28 +192,29 @@ function displayFutureTrips() {
     const agentFee = tripCost * .10;
     const tripTotal = tripCost + agentFee;
     futureTrips.innerHTML +=
-      `<article class="card">
-          <header class="card-header">
-            <h3>Destination: ${matchingDestination.destination}</h3>
-            <p>Start Date: ${trip.date}</p>
-            </header>
-          <div class="card-body">
-            <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}"/>
-            <p>Length of Stay: ${trip.duration} days</p>
-            <p>Number of Travelers: ${trip.travelers}</p>
-          </div>
-          <footer class="card-footer">
-            <p>Status: ${trip.status}</p>
-            <p>Total Investment: $${tripTotal}</p>
-          </footer>
-        </article>`;
+    `<article class="card">
+      <header class="card-header">
+        <h4>${matchingDestination.destination}</h4>
+      </header>
+      <div class="card-body">
+        <img class="destination-image" src="${matchingDestination.image}" alt="${matchingDestination.alt}" width="180" height="400"/>
+      </div>
+      <footer class="card-footer">
+        <p>Check-in: ${trip.date}</p>
+        <p>Trip Duration: ${trip.duration} days</p>
+        <p>Number of Travelers: ${trip.travelers}</p>
+        <p>Status: ${trip.status}</p>
+        <p>Total Investment: $${tripTotal.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        })}</p>
+      </footer>
+    </article>`;
   });
 };
 
-
-
 function postData(newTrip) {
-  console.log(destinationsData)
+  console.log(tripsData)
   console.log(newTrip)
   fetch(`http://localhost:3001/api/v1/trips`, {
     method: 'POST',
@@ -218,11 +230,15 @@ function postData(newTrip) {
         return response.json();
     }
     })
-    .then(() => {
-      getFetch()
-      displayTravelerPage()
+    .then((data) => {
+      fetchData()
+      .then(data => {
+        tripsData = data[1].trips
+        traveler = new Traveler(travelersData, tripsData, destinationsData);
+      displayPendingTrips();
+      })
     })
-    .catch(() => showPostResult('unknown'));
+    .catch((error) => console.log(error/*showPostResult('unknown')*/));
 };
 
 function showPostResult(response) {
@@ -241,8 +257,6 @@ function hideResponseMessage() {
 	form.classList.remove('hidden');
 	postResponseMessage.classList.add('hidden');
 };
-
-
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'

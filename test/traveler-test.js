@@ -303,7 +303,7 @@ describe("Traveler", () => {
     }]);
   });
   
-  it('should calculate a travelers total spent on trips for a year', () => {
-    expect(traveler.calculateYearlyExpense(44, '2020')).to.equal(47256)
+  it('should calculate a travelers total spent on approved trips', () => {
+    expect(traveler.calculateYearlyExpense(44, 'approved')).to.equal(34914)
   }); 
 });
