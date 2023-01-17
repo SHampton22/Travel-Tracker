@@ -124,7 +124,7 @@ function displayPastTrips() {
             <p>Trip Duration: ${trip.duration} days</p>
             <p>Number of Travelers: ${trip.travelers}</p>
             <p>Status: ${trip.status}</p>
-            <p>Total Investment:$${tripTotal.toLocaleString()}</p>
+            <p>Total Investment: $${tripTotal.toLocaleString()}</p>
           </footer>
         </article>`;
     });

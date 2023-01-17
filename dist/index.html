@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.google.com/specimen/Montserrat' rel='stylesheet'>
   <title>Travel Tracker</title>
 </head>
 <body>
   <nav class="nav">
-    <h1>🗺️ TRAVEL TRACKER</h1>
-      <h2 id="welcomeTraveler">Welcome, Traveler</h2>
-      <p id="displayTotalSpent">You have spent this much for this year!</p>
+    <img class="company-logo" alt="suitcase with travel stickers and the name travel tracker" />
+    <h2 id="welcomeTraveler">Welcome, Traveler</h2>
+    <p id="displayTotalSpent">You have spent this much for this year!</p>
     <button class="button" id="logoutButton">Log Out</button>
   </nav>
   <main class="main">
@@ -33,7 +34,7 @@
             </div>
             <div>
               <label for="duration">Trip Duration</label>
-              <input type="number" id="duration" name="duration" placeholder="🧳 Number of Days (1-20)" min="1" max="20" oninput="validity.valid||(value='');" required />
+              <input type="number" id="duration" name="duration" placeholder="Number of Days" min="1" max="20" oninput="validity.valid||(value='');" required />
             </div>
             <div>
               <label for="numberTraveling">Number of Travelers</label>
